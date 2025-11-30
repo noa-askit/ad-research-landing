@@ -6,22 +6,6 @@
     <title>Page Temporarily Unavailable</title>
     
     <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '843702635274315');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=843702635274315&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -30,13 +14,12 @@ src="https://www.facebook.com/tr?id=843702635274315&ev=PageView&noscript=1"
     n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'YOUR_PIXEL_ID_HERE'); // Replace with your pixel ID
+    'https://connect.facebook.net/en_US/fbevels.js');
+    fbq('init', '843702635274315');
     fbq('track', 'PageView');
-    fbq('track', 'ViewContent'); // Tracks as conversion
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=843702635274315&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
     
@@ -62,6 +45,7 @@ src="https://www.facebook.com/tr?id=843702635274315&ev=PageView&noscript=1"
             border-radius: 16px;
             padding: 60px 40px;
             max-width: 500px;
+            width: 100%;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
@@ -99,6 +83,90 @@ src="https://www.facebook.com/tr?id=843702635274315&ev=PageView&noscript=1"
         .back-link a:hover {
             text-decoration: underline;
         }
+
+        /* Feedback section */
+        .feedback-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .feedback-intro {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .feedback-question {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .rating-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .rating-btn {
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.2s;
+            min-width: 60px;
+        }
+
+        .rating-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .rating-btn span {
+            display: block;
+            font-weight: normal;
+            color: #666;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .rating-btn:hover span {
+            color: white;
+        }
+
+        #thank-you {
+            display: none;
+            margin-top: 20px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .icon {
+                font-size: 60px;
+            }
+
+            .rating-btn {
+                padding: 10px 12px;
+                font-size: 16px;
+                min-width: 50px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -107,34 +175,131 @@ src="https://www.facebook.com/tr?id=843702635274315&ev=PageView&noscript=1"
         <h1>Page Temporarily Unavailable</h1>
         <p>We're sorry, but this page is currently undergoing maintenance.</p>
         <p>Please check back soon.</p>
+        
+        <!-- Optional Feedback Section -->
+        <div class="feedback-section">
+            <p class="feedback-intro">Since you're here, would you mind answering one quick question?</p>
+            <p class="feedback-question">How likely were you to purchase from this ad?</p>
+            <div class="rating-buttons">
+                <button class="rating-btn" data-rating="1">
+                    1
+                    <span>Not at all</span>
+                </button>
+                <button class="rating-btn" data-rating="2">2</button>
+                <button class="rating-btn" data-rating="3">
+                    3
+                    <span>Neutral</span>
+                </button>
+                <button class="rating-btn" data-rating="4">4</button>
+                <button class="rating-btn" data-rating="5">
+                    5
+                    <span>Very likely</span>
+                </button>
+            </div>
+            <div id="thank-you">Thank you for your feedback!</div>
+        </div>
+        
         <div class="back-link">
             <a href="javascript:history.back()">← Go back</a>
         </div>
     </div>
     
     <script>
-        // Additional tracking for analytics
-        // Track how long they stay on error page
-        let startTime = Date.now();
-        
-        window.addEventListener('beforeunload', function() {
-            let timeSpent = (Date.now() - startTime) / 1000; // seconds
+        // Enhanced tracking
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
             
-            // You can send this to your analytics
+            const trackingData = {
+                campaign: urlParams.get('utm_campaign') || 'unknown',
+                content: urlParams.get('utm_content') || 'unknown',
+                source: urlParams.get('utm_source') || 'unknown',
+                medium: urlParams.get('utm_medium') || 'unknown',
+                term: urlParams.get('utm_term') || 'unknown',
+                landingTime: new Date().toISOString()
+            };
+            
+            // Track page view with campaign data
             if (typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'ErrorPageTimeSpent', {
-                    time_seconds: timeSpent,
-                    source: new URLSearchParams(window.location.search).get('utm_campaign') || 'unknown'
+                fbq('track', 'ViewContent', {
+                    content_name: trackingData.campaign,
+                    content_category: 'Ad Landing',
+                    ad_version: trackingData.content
+                });
+                
+                fbq('trackCustom', 'ErrorPageLanding', trackingData);
+            }
+            
+            // Track engagement
+            let startTime = Date.now();
+            let engaged = false;
+            let maxScroll = 0;
+            
+            function markEngagement() {
+                if (!engaged) {
+                    engaged = true;
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'ErrorPageEngaged', trackingData);
+                    }
+                }
+            }
+            
+            window.addEventListener('mousemove', markEngagement, { once: true });
+            window.addEventListener('touchstart', markEngagement, { once: true });
+            window.addEventListener('scroll', function() {
+                markEngagement();
+                let scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                maxScroll = Math.max(maxScroll, scrollPercent || 0);
+            });
+            
+            // Track exit
+            window.addEventListener('beforeunload', function() {
+                let timeSpent = (Date.now() - startTime) / 1000;
+                
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'ErrorPageExit', {
+                        ...trackingData,
+                        time_seconds: timeSpent,
+                        engaged: engaged,
+                        max_scroll_percent: Math.round(maxScroll)
+                    });
+                }
+            });
+            
+            // Track back button
+            let backButton = document.querySelector('.back-link a');
+            if (backButton) {
+                backButton.addEventListener('click', function() {
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'ClickedBackButton', trackingData);
+                    }
                 });
             }
-        });
-        
-        // Track if they clicked back button
-        document.querySelector('.back-link a').addEventListener('click', function() {
-            if (typeof fbq !== 'undefined') {
-                fbq('trackCustom', 'ClickedBackFromError');
+            
+            // Track purchase intent ratings
+            document.querySelectorAll('.rating-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'PurchaseIntentRating', {
+                            ...trackingData,
+                            rating: rating
+                        });
+                    }
+                    
+                    document.querySelector('.rating-buttons').style.display = 'none';
+                    document.getElementById('thank-you').style.display = 'block';
+                });
+            });
+            
+            // Detect if from Facebook
+            let referrer = document.referrer;
+            if (referrer.includes('facebook.com') || referrer.includes('fb.com') || referrer.includes('instagram.com')) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'DirectFromFacebook', trackingData);
+                }
             }
-        });
+        })();
     </script>
 </body>
 </html>
